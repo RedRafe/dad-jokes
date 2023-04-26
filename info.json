@@ -1,0 +1,13 @@
+{
+  "name": "dad-jokes",
+  "version": "0.1.0",
+  "title": "Dad Jokes",
+  "author": "RedRafe",
+  "source": "https://github.com/RedRafe/dad-jokes",
+  "homepage": "https://mods.factorio.com/mod/dad-jokes",
+  "dependencies": [
+    "base >= 1.1.0"
+  ],
+  "description": "The ultimate hall of shame. This mod will tell you jokes while you're playing Factorio. What else?",
+  "factorio_version": "1.1"
+}
