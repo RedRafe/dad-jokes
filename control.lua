@@ -78,6 +78,6 @@ script.on_init(init)
 script.on_load(init)
 script.on_configuration_changed(init)
 
-script.on_event(defines.events.on_tick, wrapper)
+script.on_event(defines.events.on_tick, tell_a_joke_wrapper)
 
 commands.add_command("joke", "/joke", tell_a_joke)

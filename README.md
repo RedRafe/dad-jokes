@@ -1,6 +1,6 @@
 # **Dad Jokes**
 
-The factory must laugh!
+The factory must laugh! + easter eggs
 
 # Main features
 
