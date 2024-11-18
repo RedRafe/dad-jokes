@@ -1,6 +1,8 @@
 # Personal
 .vscode/
 .DS_Store
+jokes.lua
+jokes_nsfw.lua
 
 # Compiled Lua sources
 luac.out

@@ -1,21 +1,21 @@
-local util = require "util"
-local JOKES = require "jokes"
-local JOKES_NSFW = require "jokes_nsfw"
+local util = require 'util'
+local JOKES = require 'jokes'
+local JOKES_NSFW = require 'jokes_nsfw'
 
 local COLORS = {
-  util.color("70b6ff"), -- blue
-  util.color("9c7c60"), -- brown
-  util.color("70f1ff"), -- cyan
-  util.color("cb302a"), -- deep-red
-  util.color("b7b7b7"), -- gray
-  util.color("95e26c"), -- green
-  util.color("ffa345"), -- orange
-  util.color("7a9e96"), -- pine
-  util.color("f96bcd"), -- pink
-  util.color("9c70ff"), -- purple
-  util.color("f27c52"), -- red
-  util.color("f27c52"), -- vanilla-red
-  util.color("ffdd45"), -- yellow
+  util.color('70b6ff'), -- blue
+  util.color('9c7c60'), -- brown
+  util.color('70f1ff'), -- cyan
+  util.color('cb302a'), -- deep-red
+  util.color('b7b7b7'), -- gray
+  util.color('95e26c'), -- green
+  util.color('ffa345'), -- orange
+  util.color('7a9e96'), -- pine
+  util.color('f96bcd'), -- pink
+  util.color('9c70ff'), -- purple
+  util.color('f27c52'), -- red
+  util.color('f27c52'), -- vanilla-red
+  util.color('ffdd45'), -- yellow
 }
 
 local SIZE = table_size(JOKES)
@@ -31,8 +31,12 @@ local function get_color()
 end
 
 local function get_joke(n)
-  if n > JOKES_SIZE or JOKES_SIZE == 0 then return "This isn't funny" end
-  if n > SIZE then return JOKES_NSFW[n - SIZE] end
+  if n > JOKES_SIZE or JOKES_SIZE == 0 then
+    return 'This isn\'t funny'
+  end
+  if n > SIZE then
+    return JOKES_NSFW[n - SIZE]
+  end
   return JOKES[n]
 end
 
@@ -40,19 +44,19 @@ local function tell_a_joke()
   local rng = math.random(JOKES_SIZE)
   local msg = get_joke(rng)
   local color = get_color()
-  game.print(msg[1], color)
+  game.print(msg, { color = color })
 end
 
 local function update_buildup()
-  BUILDUP = (settings.global["dj-buildup"].value or 5) * 60 * 60 
+  BUILDUP = (settings.global['dj-buildup'].value or 5) * 60 * 60
 end
 
 local function update_cooldown()
-  COOLDOWN = (settings.global["dj-cooldown"].value or 10) * 60 * 60 
+  COOLDOWN = (settings.global['dj-cooldown'].value or 10) * 60 * 60
 end
 
 local function update_size()
-  if settings.global["dj-nsfw"].value == true then 
+  if settings.global['dj-nsfw'].value == true then
     JOKES_SIZE = SIZE + SIZE_NSFW
   else
     JOKES_SIZE = SIZE
@@ -66,9 +70,15 @@ local function init()
 end
 
 local function tell_a_joke_wrapper(event)
-  if event.tick < BUILDUP then return end
-  if COOLDOWN == 0 then return end
-  if event.tick % COOLDOWN ~= 0 then return end
+  if event.tick < BUILDUP then
+    return
+  end
+  if COOLDOWN == 0 then
+    return
+  end
+  if event.tick % COOLDOWN ~= 0 then
+    return
+  end
   tell_a_joke()
 end
 
@@ -80,4 +90,4 @@ script.on_configuration_changed(init)
 
 script.on_event(defines.events.on_tick, tell_a_joke_wrapper)
 
-commands.add_command("joke", "/joke", tell_a_joke)
+commands.add_command('joke', '/joke', tell_a_joke)
